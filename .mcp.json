@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "seo-article-audit": {
+      "command": "./bin/seo-article-audit-server"
+    },
+    "ahrefs": {
+      "type": "http",
+      "url": "https://api.ahrefs.com/mcp/mcp"
+    }
+  }
+}

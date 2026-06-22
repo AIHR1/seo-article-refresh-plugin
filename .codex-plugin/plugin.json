@@ -1,0 +1,35 @@
+{
+  "name": "seo-article-audit",
+  "version": "2.4.0",
+  "description": "Audit an AIHR article's search performance: pull Google Search Console query metrics and Ahrefs organic keywords for a single URL, run a content-gap analysis against intent-selected organic competitors, then output a static Excel workbook and Markdown analysis. Also bundles the article-diff-md skill for red/green diff-block Markdown files.",
+  "author": {
+    "name": "AIHR"
+  },
+  "license": "Proprietary",
+  "keywords": [
+    "seo",
+    "google-search-console",
+    "ahrefs",
+    "content-gap",
+    "aihr"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "SEO Article Audit",
+    "shortDescription": "Audit AIHR article search performance",
+    "longDescription": "Pulls Google Search Console query data, Ahrefs keyword data, and page-level content-gap inputs for an AIHR article, then produces static workbook and Markdown analysis files.",
+    "developerName": "AIHR",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Audit this AIHR article",
+      "Run SEO analysis for this URL",
+      "Create an article diff block"
+    ],
+    "brandColor": "#2563EB"
+  }
+}
