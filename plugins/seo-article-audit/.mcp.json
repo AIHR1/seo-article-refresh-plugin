@@ -2,11 +2,7 @@
   "mcpServers": {
     "AIHR GSC API": {
       "type": "http",
-      "url": "https://aihr-gsc-api.vercel.app/mcp",
-      "oauth": {
-        "authServerMetadataUrl": "https://accounts.google.com/.well-known/openid-configuration",
-        "scopes": "openid email profile"
-      }
+      "url": "https://aihr-gsc-api.vercel.app/mcp"
     },
     "ahrefs": {
       "type": "http",
