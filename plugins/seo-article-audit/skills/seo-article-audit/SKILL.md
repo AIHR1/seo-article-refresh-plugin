@@ -60,7 +60,7 @@ The GSC server is a remote HTTP MCP endpoint (`https://gsc-mcp.aihr.com/mcp`). G
 sign-in for `@aihr.com` should already have completed at plugin install (Codex / Cloud Cowork).
 
 ```
-mcp__plugin_seo-article-audit_seo-article-audit__seo_article_audit_gsc(url="<normalised_url>")
+mcp__plugin_seo-article-audit_seo-article-audit__Fetch Article Keyword Performance(url="<normalised_url>")
 ```
 
 If the result starts with "Error:", surface it to the user and stop. If the tool is missing or
