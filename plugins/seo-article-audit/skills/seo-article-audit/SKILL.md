@@ -56,7 +56,7 @@ The Excel workbook is the intermediate data deliverable; the `.md` is the final 
 
 ### 2. Call the GSC MCP tool
 
-The GSC server is a remote HTTP MCP endpoint (`https://aihr-gsc-api.vercel.app/mcp`). Google
+The GSC server is a remote HTTP MCP endpoint (`https://gsc-mcp.aihr.com/mcp`). Google
 sign-in for `@aihr.com` should already have completed at plugin install (Codex / Cloud Cowork).
 
 ```

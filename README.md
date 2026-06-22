@@ -13,11 +13,25 @@ During install, Codex should open a browser for Google sign-in (PKCE) so the bun
 
 ## Install in Cloud Cowork
 
+### From GitHub marketplace
+
 1. Open **Customize → Plugins** in Cowork.
 2. **Add marketplace** and enter `MarijnVerdult/seo-article-refresh-plugin` (or the full GitHub URL).
 3. Install **SEO Article Audit**.
 
-If the plugin includes a connector that needs authentication, Cowork should prompt you to sign in during or right after install — a browser tab or in-app sign-in flow for Google (`@aihr.com`). The GSC MCP server is `https://aihr-gsc-api.vercel.app/mcp`; tool name `seo_article_audit_gsc`.
+### From a local file (no marketplace)
+
+A packaged Cowork bundle is built at `../seo-article-audit.plugin` (v2.7.0). Rebuild anytime:
+
+```sh
+./scripts/package-cowork-plugin.sh
+```
+
+Install in Cowork:
+
+1. Open **Customize → Plugins**.
+2. Use **Upload plugin** and select `seo-article-audit.zip` (or rename `.plugin` → `.zip` if upload rejects `.plugin`).
+3. Complete Google sign-in when prompted for **AIHR GSC API**.
 
 If install completes without a sign-in prompt, remove and reinstall the plugin after the marketplace cache refreshes, or contact your admin if the org pins an older marketplace snapshot.
 
@@ -41,7 +55,7 @@ This plugin bundles two skills:
 
 ## Requirements
 
-- Network access to `https://aihr-gsc-api.vercel.app`.
+- Network access to `https://gsc-mcp.aihr.com`.
 - Google login with an `@aihr.com` Workspace account (requested at plugin install).
 - Ahrefs MCP access when running the full audit workflow (separate connector auth as required by Ahrefs).
 

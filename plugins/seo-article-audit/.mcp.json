@@ -2,7 +2,7 @@
   "mcpServers": {
     "AIHR GSC API": {
       "type": "http",
-      "url": "https://aihr-gsc-api.vercel.app/mcp"
+      "url": "https://gsc-mcp.aihr.com/mcp"
     },
     "ahrefs": {
       "type": "http",
