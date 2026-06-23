@@ -1,7 +1,7 @@
 {
   "name": "seo-article-audit",
-  "version": "2.7.3",
-  "description": "Audit an AIHR article's search performance: pull Google Search Console query metrics and Ahrefs organic keywords for a single URL, run a content-gap analysis against intent-selected organic competitors, then output a static Excel workbook and Markdown analysis. Also bundles the article-diff-md skill for red/green diff-block Markdown files.",
+  "version": "2.7.4",
+  "description": "Diagnose why an AIHR article declined in organic traffic and decide whether there is a viable SEO salvage strategy. Reads the article, checks prior Outline analysis, derives primary and secondary keyword candidates, pulls GSC and Ahrefs facts, delegates factual SERP observation, and reports a human-in-the-loop strategy recommendation before any optimization work. Also bundles serp-analysis for factual US Google SERP screenshot and feature inventory, article-diff-md for red/green diff-block Markdown files, and outline-article-refresh-memory so assistants proactively keep monthly Outline records and attachments up to date during SEO refresh work.",
   "author": {
     "name": "AIHR"
   },
@@ -10,15 +10,15 @@
     "seo",
     "google-search-console",
     "ahrefs",
-    "content-gap",
+    "traffic-decline",
     "aihr"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "SEO Article Audit",
-    "shortDescription": "Audit AIHR article search performance",
-    "longDescription": "Pulls Google Search Console query data, Ahrefs keyword data, and page-level content-gap inputs for an AIHR article, then produces static workbook and Markdown analysis files.",
+    "shortDescription": "Diagnose AIHR article traffic declines",
+    "longDescription": "Reads an AIHR article, checks prior Outline analysis, pulls Google Search Console and Ahrefs facts, delegates factual SERP observation for primary and secondary keywords, and reports a human-in-the-loop salvage strategy before optimization work begins.",
     "developerName": "AIHR",
     "category": "Productivity",
     "capabilities": [
@@ -27,8 +27,12 @@
     ],
     "defaultPrompt": [
       "Audit this AIHR article",
+      "Why did this AIHR article decline?",
+      "Can this article be salvaged?",
       "Run SEO analysis for this URL",
-      "Create an article diff block"
+      "Analyze this keyword SERP",
+      "Create an article diff block",
+      "Save this SEO refresh in Outline"
     ],
     "brandColor": "#2563EB"
   }
