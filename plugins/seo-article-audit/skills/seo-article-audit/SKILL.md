@@ -42,6 +42,11 @@ discussed the strategy.
 
 ## Guardrails
 
+- The main goal is to recover clicks. Rankings are an input because rankings can lead to clicks,
+  but ranking is not the primary goal.
+- Always evaluate ranking opportunity through the visible SERP layout. If AI Overview, sponsored
+  results, image packs, People Also Ask, videos, or other modules push blue links down, a high
+  organic rank may still produce weak clicks.
 - Stop at strategy. Do not provide article optimizations yet.
 - Separate data gathering from interpretation.
 - Treat `serp-analysis` outputs as fact-only evidence. The main auditor owns interpretation.
@@ -222,6 +227,8 @@ Strategy criteria:
   composition, AI Overview pressure, competing page types, and GSC evidence.
 - Secondary keyword viability depends on GSC query evidence, Ahrefs difficulty/volume, SERP facts,
   and relevance to the article's current or plausible scope.
+- A keyword is only strategically useful if it can plausibly recover clicks. Strong ranking potential
+  is not enough when SERP features or ads make organic clicks unlikely.
 - A strategy can be mixed, e.g. keep the primary keyword while using secondary keywords as the
   traffic recovery path.
 
@@ -253,6 +260,7 @@ Why did the article decline?
 Is the primary keyword still viable?
 Is there a better secondary keyword opportunity?
 Is there an opportunity to salvage the article?
+Which path is most likely to recover clicks, not just rankings?
 Which strategy should we discuss before optimization work begins?
 ```
 
