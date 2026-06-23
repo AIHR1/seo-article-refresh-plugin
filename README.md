@@ -4,10 +4,12 @@ Public marketplace repo for Codex and Cloud Cowork plugins used in AIHR SEO work
 
 ## Install in Codex
 
-```sh
-codex plugin marketplace add MarijnVerdult/seo-article-refresh-plugin --ref main --sparse .agents/plugins --sparse plugins
-codex plugin add seo-article-audit@aihr-seo-plugins
-```
+1. Open the Codex Desktop application.
+2. Open **Customize → Plugins**.
+3. Choose **Add marketplace**.
+4. Enter `MarijnVerdult/seo-article-refresh-plugin` and add the marketplace.
+5. Install **SEO Article Audit** from the plugin list.
+6. Complete the Google sign-in prompt for **AIHR GSC API** when Codex asks for it.
 
 During install, Codex should open a browser for Google sign-in (PKCE) so the bundled **AIHR GSC API** MCP connector can call Search Console. Only verified `@aihr.com` Workspace accounts are accepted. **Outline** uses OAuth at connect time (sign in to the AIHR Outline workspace). **Ahrefs** uses its own connector auth when you run the full audit workflow.
 
