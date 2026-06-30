@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "AIHR GSC API": {
+    "AIHR-GSC-API": {
       "type": "http",
       "url": "https://gsc-mcp.aihr.com/mcp"
     },

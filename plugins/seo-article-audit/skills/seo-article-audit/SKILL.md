@@ -48,13 +48,13 @@ This audit uses **three separate tools**. Each has one job. Do not substitute on
 
 | Data need | Required source | Required method |
 | --- | --- | --- |
-| Page traffic, query clicks, impressions, position, CTR, 6-month decline | **Google Search Console** | MCP server **`AIHR GSC API`** → tool **`fetch_article_keyword_performance`** with the normalized AIHR URL |
+| Page traffic, query clicks, impressions, position, CTR, 6-month decline | **Google Search Console** | MCP server **`AIHR-GSC-API`** → tool **`fetch_article_keyword_performance`** with the normalized AIHR URL |
 | Keyword difficulty and search volume only | **Ahrefs** | MCP server **`ahrefs`** → tool **`keywords-explorer-overview`** for the keyword in **`US`**; read only **keyword difficulty** and **search volume** |
 | SERP features, organic results, AI Overview, PAA, ads, intent, screenshot | **Live Google SERP** | Bundled skill **`serp-analysis`** via **browser** (navigate to `google.com/search`, capture screenshot, inspect DOM) |
 
 ### Google Search Console rules
 
-- **Always** use the bundled **`AIHR GSC API`** MCP at `https://gsc-mcp.aihr.com/mcp`.
+- **Always** use the bundled **`AIHR-GSC-API`** MCP at `https://gsc-mcp.aihr.com/mcp`.
 - **Always** call **`fetch_article_keyword_performance`**. It returns US traffic with current vs previous 6-month page and query metrics.
 - **Never** use Ahrefs GSC tools (`gsc-pages`, `gsc-keywords`, `gsc-page-history`, or any other `gsc-*` Ahrefs endpoint) for this audit. Ahrefs GSC is not the packaged GSC source.
 - **Never** infer traffic decline from Ahrefs traffic estimates, `site-explorer-*` metrics, or rank-tracker data when GSC is available.
@@ -79,7 +79,7 @@ Before calling a tool, confirm:
 
 ```text
 Need query-level clicks/impressions/position for this exact AIHR URL?
-  → AIHR GSC API / fetch_article_keyword_performance
+  → AIHR-GSC-API / fetch_article_keyword_performance
 
 Need difficulty or volume for one keyword?
   → ahrefs / keywords-explorer-overview (US only; difficulty + volume fields only)
@@ -212,7 +212,7 @@ The SERP evidence must be gathered from live Google using **`serp-analysis`** on
 
 ## 7. Pull GSC Exact-Page Query Data
 
-Call the **`AIHR GSC API`** MCP server. Use tool **`fetch_article_keyword_performance`** with the exact normalized page URL.
+Call the **`AIHR-GSC-API`** MCP server. Use tool **`fetch_article_keyword_performance`** with the exact normalized page URL.
 
 This is the only GSC source for this audit. Do not call Ahrefs `gsc-*` tools or legacy REST endpoints.
 
