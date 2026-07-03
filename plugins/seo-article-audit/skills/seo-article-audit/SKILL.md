@@ -48,14 +48,17 @@ This audit uses **three separate tools**. Each has one job. Do not substitute on
 
 | Data need | Required source | Required method |
 | --- | --- | --- |
-| Page traffic, query clicks, impressions, position, CTR, 6-month decline | **Google Search Console** | MCP server **`AIHR-GSC-API`** → tool **`fetch_article_keyword_performance`** with the normalized AIHR URL |
+| Page traffic, query clicks, impressions, position, CTR, 6-month decline | **Google Search Console** | MCP server **`AIHR-GSC-API`** → tool **`fetch_article_keyword_performance`** twice with the normalized AIHR URL: once with `us_only: false` and once with `us_only: true` |
 | Keyword difficulty and search volume only | **Ahrefs** | MCP server **`ahrefs`** → tool **`keywords-explorer-overview`** for the keyword in **`US`**; read only **keyword difficulty** and **search volume** |
 | SERP features, organic results, AI Overview, PAA, ads, intent, screenshot | **Live Google SERP** | Bundled skill **`serp-analysis`** via **browser** (navigate to `google.com/search`, capture screenshot, inspect DOM) |
 
 ### Google Search Console rules
 
 - **Always** use the bundled **`AIHR-GSC-API`** MCP at `https://gsc-mcp.aihr.com/mcp`.
-- **Always** call **`fetch_article_keyword_performance`**. It returns US traffic with current vs previous 6-month page and query metrics.
+- **Always** call **`fetch_article_keyword_performance`** twice for the same normalized URL:
+  - `us_only: false` for worldwide traffic.
+  - `us_only: true` for United States traffic.
+- The tool returns current vs previous 6-month page and query metrics. Keep the worldwide and US-only responses separate.
 - **Never** use Ahrefs GSC tools (`gsc-pages`, `gsc-keywords`, `gsc-page-history`, or any other `gsc-*` Ahrefs endpoint) for this audit. Ahrefs GSC is not the packaged GSC source.
 - **Never** infer traffic decline from Ahrefs traffic estimates, `site-explorer-*` metrics, or rank-tracker data when GSC is available.
 
@@ -79,7 +82,8 @@ Before calling a tool, confirm:
 
 ```text
 Need query-level clicks/impressions/position for this exact AIHR URL?
-  → AIHR-GSC-API / fetch_article_keyword_performance
+  → AIHR-GSC-API / fetch_article_keyword_performance twice
+  → us_only=false for worldwide, then us_only=true for US-only
 
 Need difficulty or volume for one keyword?
   → ahrefs / keywords-explorer-overview (US only; difficulty + volume fields only)
@@ -214,19 +218,34 @@ The SERP evidence must be gathered from live Google using **`serp-analysis`** on
 
 ## 7. Pull GSC Exact-Page Query Data
 
-Call the **`AIHR-GSC-API`** MCP server. Use tool **`fetch_article_keyword_performance`** with the exact normalized page URL.
+Call the **`AIHR-GSC-API`** MCP server. Use tool **`fetch_article_keyword_performance`** with the exact normalized page URL twice:
+
+```json
+{"url":"https://www.aihr.com/blog/example/","us_only":false}
+{"url":"https://www.aihr.com/blog/example/","us_only":true}
+```
 
 This is the only GSC source for this audit. Do not call Ahrefs `gsc-*` tools or legacy REST endpoints.
 
-The tool returns US data as current vs previous 6-month windows with page totals and query rows sorted by largest click loss first.
+The first call returns worldwide data. The second call returns US-only data. Both responses use current vs previous 6-month windows with page totals and query rows sorted by largest click loss first.
+
+In the main response, show the page-level GSC data as a Markdown table before interpreting it. Include both worldwide and US-only rows:
+
+```text
+| Scope | Current clicks | Previous clicks | Δ clicks | Current impressions | Previous impressions | Δ impressions | Current CTR | Previous CTR | Current avg position | Previous avg position |
+| Worldwide | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+| US only | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+```
+
+CTR is clicks ÷ impressions. Average position comes from `page.position` as `[current, previous]`. If a period has zero impressions, use `n/a` for CTR; if position is missing, use `n/a` instead of inventing a value.
 
 From the response, identify:
 
 ```text
-Total clicks: current vs previous
-Total impressions: current vs previous
-Average CTR: current vs previous
-Average position: current vs previous
+Total clicks: current vs previous for worldwide and US-only
+Total impressions: current vs previous for worldwide and US-only
+Average CTR: current vs previous for worldwide and US-only
+Average position: current vs previous for worldwide and US-only
 Queries that currently bring clicks
 Queries that previously brought clicks
 Queries with the largest click losses
@@ -236,7 +255,7 @@ Queries where rankings dropped materially
 Queries where impressions changed materially
 ```
 
-Keep raw query facts separate from interpretation.
+Use the US-only query data for keyword candidate selection unless worldwide data shows a materially different decline pattern that should be called out. Keep raw query facts separate from interpretation.
 
 ## 8. Determine Potential Secondary Keywords
 
@@ -299,6 +318,7 @@ Return a Markdown strategy report with these sections:
 Article Reviewed
 Prior Analysis Checked
 Traffic Decline Summary
+GSC Page Metrics
 Primary Keyword Facts
 Primary SERP Facts
 GSC Query Findings
