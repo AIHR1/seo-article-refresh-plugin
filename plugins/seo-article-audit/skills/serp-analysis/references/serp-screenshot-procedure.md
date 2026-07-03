@@ -40,6 +40,8 @@ Use the user's real browser profile. Do not use standalone Playwright, bundled/h
 
 Use Chrome through the Codex Chrome plugin / Codex Chrome Extension. The extension must be installed and enabled in the exact Chrome profile that Codex controls, not just in another visible Chrome profile.
 
+Before telling the user Chrome is unavailable, re-check the available Chrome/browser tooling and retry the Chrome route once. Do not stop after the first failed attach or first missing-tool response.
+
 If Chrome cannot attach, first verify:
 
 ```text
@@ -53,6 +55,8 @@ If the extension is installed in the wrong profile, ask the user to open the sel
 ### Claude Cowork
 
 Use the Claude Cowork browser surface or the Claude in Chrome add-on controlling the user's Chrome profile. If that connection is unavailable, stop and ask the user to enable/connect it.
+
+Before telling the user Chrome or the add-on is unavailable, re-check the available browser tooling and retry the Chrome/add-on route once. Do not continue with bundled/headless browser capture unless the user explicitly approves that fallback.
 
 ### Cursor
 

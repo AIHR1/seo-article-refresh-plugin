@@ -27,17 +27,17 @@ This skill is the **only** approved source for SERP inventory in the SEO Article
 | | Using Ahrefs to infer organic result order, SERP features, or AI Overview content |
 | | Standalone Playwright, bundled/headless Chromium, in-app browser, or any non-user browser for Google SERP capture unless the user explicitly approves that fallback after the user browser path fails |
 
-If user-browser access fails, stop SERP collection and ask the user to connect or enable the required browser add-on/profile. Do **not** fall back to Ahrefs, standalone Playwright, bundled/headless Chromium, or the in-app browser.
+If user-browser access fails, first re-check the available Chrome/browser tooling and retry the user-Chrome route once. Only after that second check fails should you stop SERP collection and ask the user to connect or enable the required browser add-on/profile. Do **not** fall back to Ahrefs, standalone Playwright, bundled/headless Chromium, or the in-app browser.
 
 ### Browser requirement
 
 Use the user's real browser profile for Google SERP capture. This is mandatory because Google SERPs depend on browser profile state, anti-bot handling, localization, and rendered page behavior.
 
-- **Codex:** use the Codex Chrome plugin / Codex Chrome Extension through `chrome:control-chrome`. Do not use the bundled browser, standalone Playwright, headless Chromium, or the in-app browser for Google SERPs.
-- **Claude Cowork:** use the Claude Cowork browser surface or the Claude in Chrome add-on controlling the user's Chrome profile. Do not use a bundled/headless browser for Google SERPs.
+- **Codex:** use the Codex Chrome plugin / Codex Chrome Extension through `chrome:control-chrome`. If Chrome is initially reported unavailable, check the available Chrome/browser tools again and retry once before saying it is unavailable. Do not use the bundled browser, standalone Playwright, headless Chromium, or the in-app browser for Google SERPs.
+- **Claude Cowork:** use the Claude Cowork browser surface or the Claude in Chrome add-on controlling the user's Chrome profile. If Chrome or the add-on is initially reported unavailable, check again and retry once before saying it is unavailable. Do not use a bundled/headless browser for Google SERPs.
 - **Cursor:** use `cursor-ide-browser` only when it controls the user's active browser context. If it is not a user-browser surface for the current environment, stop and ask for the appropriate browser connection.
 
-When the correct user-browser surface is unavailable, say exactly what is needed, for example: "I need access to your browser to capture the live Google SERP. Please enable/connect the browser add-on and tell me when ready." Do not continue SERP collection with another browser unless the user explicitly approves that fallback.
+When the correct user-browser surface is still unavailable after the retry, say exactly what is needed, for example: "I need access to Chrome through the browser extension to capture the live Google SERP. Please enable/connect the browser add-on in the Chrome profile you want me to use and tell me when ready." Do not continue SERP collection with another browser unless the user explicitly approves that fallback.
 
 Read `references/serp-screenshot-procedure.md` before the first screenshot. Every SERP fact in the output must trace to what the browser showed on the live Google page.
 
@@ -71,7 +71,7 @@ Answer these fact-only questions:
 
 1. What SERP features are visible?
 2. Which pages, domains, and page types are visible in organic results?
-3. What does the AI Overview show, if present?
+3. What does the AI Overview show, if present, and what does it look like in general?
 4. Which questions, related searches, ads, images, videos, forums, or other modules are visible?
 5. What search intent is indicated by the visible SERP composition?
 
@@ -83,7 +83,7 @@ Do not answer whether AIHR can rank, what AIHR should write, what subheaders to 
 2. Open the URL in a **user-browser** tab using the environment-specific route above. Do not open Ahrefs. Do not use standalone Playwright, bundled/headless Chromium, or the in-app browser.
 3. Capture a full-page screenshot using the reference procedure.
 4. Inspect the live SERP and screenshot for:
-	1. AI Overview: whether present, visible text summary, cited/source types, and whether visible sources include YouTube, Reddit, forums, definitions, tools, lists, or article-style pages.
+	1. AI Overview: whether present, visible text summary, general format (short answer, long generated explanation, list/steps, definition-style answer, comparison/table-like answer, or absent), whether it was expanded, cited/source types, and whether visible sources include YouTube, Reddit, forums, definitions, tools, lists, or article-style pages.
 	2. Search intent: observed dominant and secondary intent labels, grounded in visible SERP composition and page types.
 	3. People Also Ask: every visible question, in visible order.
 	4. People also search for / related searches: every visible related query, in visible order.
@@ -124,6 +124,8 @@ Other SERP Modules
 Caveats
 Screenshot
 ```
+
+The **AI Overview** section must be a few concrete sentences, not just `present` or `absent`. If present, describe the general shape of the module, whether it appears above the first organic result, what it answers, whether it was expanded, and the visible source types. If absent, state that no AI Overview was visible in the captured SERP and note any other above-the-fold modules that affect the first organic result.
 
 **SERP Evidence Used** must confirm browser capture only. If Ahrefs or any third-party SERP source was used, the output is invalid — redo the capture with the browser workflow.
 

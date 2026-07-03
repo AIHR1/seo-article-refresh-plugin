@@ -39,8 +39,9 @@ discussed the strategy.
 6. Pull exact-page GSC query data for a 6-month comparison.
 7. Identify potential secondary keyword candidates from GSC.
 8. Pull Ahrefs difficulty/volume and delegate live-Google SERP analysis for selected secondary keyword(s).
-9. Decide the strategy direction and report back for human review.
-10. Update Outline with the strategy report — do not skip this after delivering the report to the user.
+9. Summarize what the AI Overview looks like across the checked SERPs and how it affects click opportunity.
+10. Decide the strategy direction and report back for human review.
+11. Update Outline with the strategy report — do not skip this after delivering the report to the user.
 
 ## Tool Routing (Mandatory)
 
@@ -75,6 +76,7 @@ This audit uses **three separate tools**. Each has one job. Do not substitute on
 - **Never** call Ahrefs **`serp-overview`** or **`rank-tracker-serp-overview`** for SERP inventory, intent, modules, or ranking realism.
 - **Never** paste Ahrefs SERP rows into Primary SERP Facts or Secondary SERP Facts. Those sections may only contain output from **`serp-analysis`** plus its screenshot path.
 - When sub-agents are available, delegate **`serp-analysis`** as a fact-only sub-task. When they are not, run **`serp-analysis`** directly yourself — still via browser, not Ahrefs.
+- **Prefer and actively retry Chrome.** In Codex, use the Codex Chrome plugin / Codex Chrome Extension. In Claude Cowork, use Claude in Chrome or the Cowork browser surface controlling the user's Chrome profile. If a first attempt says Chrome or the extension is unavailable, check the available browser/Chrome tools again and retry once before telling the user it is unavailable. Do not report that Chrome is unavailable unless this second check also fails or the environment genuinely exposes no user-Chrome control.
 
 ### Decision checks before each pull
 
@@ -104,7 +106,7 @@ Need what Google actually shows for a keyword (features, links, AI Overview, PAA
 - Separate data gathering from interpretation.
 - Follow **Tool Routing (Mandatory)** for every data pull. Wrong-tool data is invalid for this audit.
 - Treat `serp-analysis` outputs as the only SERP inventory evidence. The main auditor owns interpretation.
-- For Google SERP capture, require the user's real browser profile. In Codex, use the Codex Chrome plugin / Codex Chrome Extension. In Claude Cowork, use Claude Cowork browser control or Claude in Chrome. Do not use standalone Playwright, bundled/headless Chromium, or the in-app browser unless the user explicitly approves that fallback after the user-browser path fails.
+- For Google SERP capture, require the user's real browser profile and strongly prefer Chrome through the relevant extension/add-on. In Codex, use the Codex Chrome plugin / Codex Chrome Extension. In Claude Cowork, use Claude Cowork browser control or Claude in Chrome. If Chrome appears unavailable, re-check and retry once before asking the user to connect it. Do not use standalone Playwright, bundled/headless Chromium, or the in-app browser unless the user explicitly approves that fallback after the user-browser path fails.
 - If data is unavailable, continue with the remaining evidence and state the gap.
 - Do not overfit to one metric. Use article content, Ahrefs keyword metrics, SERP facts, and GSC together.
 - Be explicit about what is observed vs inferred.
@@ -203,6 +205,7 @@ keyword role: primary
 market: US
 required screenshot filename/path
 browser requirement: user browser only; Codex → Codex Chrome plugin / Codex Chrome Extension; Claude Cowork → Claude Cowork browser control or Claude in Chrome; no standalone Playwright, bundled/headless Chromium, or in-app browser without explicit user-approved fallback
+Chrome retry requirement: if Chrome is reported unavailable, re-check available Chrome/browser tooling and retry once before asking the user to connect/enable it
 ```
 
 Do not pass Ahrefs data into **`serp-analysis`**. Ahrefs keyword metrics stay in the parent audit; SERP collection is browser-only.
@@ -215,6 +218,22 @@ If sub-agents are not available, run the **`serp-analysis`** workflow directly a
 boundary and user-browser requirement.
 
 The SERP evidence must be gathered from live Google using **`serp-analysis`** only. Do not use Ahrefs inside that skill or to fill Primary SERP Facts. If the correct user browser cannot be reached, stop SERP collection and ask the user to connect/enable the browser add-on/profile rather than continuing with another browser.
+
+## 6a. Summarize The AI Overview For The User
+
+The final user-facing report must include a few plain-language sentences about the AI Overview, even when the AI Overview is absent.
+
+For every primary or secondary SERP checked, state:
+
+```text
+Whether an AI Overview was present
+What it looked like in general: short answer, long generated explanation, list/steps, definition-style answer, comparison/table-like answer, or no AI Overview
+Whether it was expanded during capture
+Which visible source types it cited, if any: AIHR, competitors, universities, vendors, forums, YouTube, tools/templates, etc.
+Whether it appeared above the first organic result and therefore likely changes how much attention/clicks blue links can receive
+```
+
+Keep this factual. Do not claim the AI Overview caused a traffic decline unless GSC/SERP evidence supports that inference. It is acceptable to say: "The AI Overview creates click pressure because it answers part of the query above the organic results," when that is observed in the screenshot.
 
 ## 7. Pull GSC Exact-Page Query Data
 
@@ -321,6 +340,7 @@ Traffic Decline Summary
 GSC Page Metrics
 Primary Keyword Facts
 Primary SERP Facts
+AI Overview Summary
 GSC Query Findings
 Secondary Keyword Candidates
 Secondary SERP Facts
@@ -339,6 +359,7 @@ Is there a better secondary keyword opportunity?
 Is there an opportunity to salvage the article?
 Which path is most likely to recover clicks, not just rankings?
 Which strategy should we discuss before optimization work begins?
+What the AI Overview looks like and whether it creates click pressure?
 ```
 
 End by asking the human to confirm or challenge the strategy before any optimization plan is created.
@@ -354,6 +375,7 @@ Capture at minimum:
 ```text
 Traffic decline summary and key GSC query findings
 Primary and secondary keyword facts (Ahrefs difficulty/volume)
+AI Overview summary and screenshot-backed SERP observations
 Strategy recommendation and why
 Open questions for human review
 Links or references to audit artifacts (full-article file, SERP screenshots, etc.)
