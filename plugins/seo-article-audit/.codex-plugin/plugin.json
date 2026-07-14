@@ -1,7 +1,7 @@
 {
   "name": "seo-article-audit",
-  "version": "2.7.11",
-  "description": "Diagnose why an AIHR article lost organic traffic and whether SEO salvage is viable. Reads the article, checks Outline history, derives keyword candidates, pulls worldwide and US-only GSC data plus Ahrefs facts, runs Chrome-based factual SERP observation with AI Overview summaries, and recommends strategy before optimization. Bundles serp-analysis (US SERP facts), article-diff-md (red/green diffs), and outline-article-refresh-memory (monthly Outline updates during refresh).",
+  "version": "3.0.0",
+  "description": "Diagnose why an AIHR article lost organic traffic, decide whether SEO salvage is viable, then execute confirmed strategies as compact click-focused article changes. Reads the article, checks Outline history, pulls worldwide and US-only GSC data plus Ahrefs keyword facts, runs Chrome-based factual SERP observation, recommends strategy before optimization, and bundles seo-strategy-execution for recommendations, rewrite risk assessment, draft edits, and article-diff-md red/green diff views.",
   "author": {
     "name": "AIHR"
   },
@@ -18,7 +18,7 @@
   "interface": {
     "displayName": "SEO Article Audit",
     "shortDescription": "Diagnose AIHR article traffic declines",
-    "longDescription": "Reads an AIHR article, checks prior Outline analysis, pulls Google Search Console and Ahrefs facts, delegates factual SERP observation for primary and secondary keywords, and reports a human-in-the-loop salvage strategy before optimization work begins.",
+    "longDescription": "Reads an AIHR article, checks prior Outline analysis, pulls Google Search Console and Ahrefs facts, delegates factual SERP observation for primary and secondary keywords, reports a human-in-the-loop salvage strategy, and can turn confirmed strategies into compact article recommendations, rewrite risk assessments, and article-diff-md draft edit views.",
     "developerName": "AIHR",
     "category": "Productivity",
     "capabilities": [
@@ -30,6 +30,9 @@
       "Why did this AIHR article decline?",
       "Can this article be salvaged?",
       "Run SEO analysis for this URL",
+      "Execute this SEO article strategy",
+      "Suggest article changes from this SEO audit",
+      "Draft SEO refresh edits for this article",
       "Analyze this keyword SERP",
       "Create an article diff block",
       "Save this SEO refresh in Outline"

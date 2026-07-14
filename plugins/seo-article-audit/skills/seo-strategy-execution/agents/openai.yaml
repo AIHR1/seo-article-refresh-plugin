@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEO Strategy Execution"
+  short_description: "Turn SEO audit strategy into article edits"
+  default_prompt: "Execute this SEO article strategy"

@@ -27,7 +27,8 @@ And is there an opportunity to salvage it?
 The output is a diagnostic strategy report, not an optimization plan. Stop after explaining the
 decline, the keyword landscape, and the recommended strategy direction. Do not suggest rewrites,
 new sections, FAQs, titles, briefs, or on-page optimizations until the human has reviewed and
-discussed the strategy.
+discussed the strategy. After the human confirms the strategy, use `seo-strategy-execution` as the
+second step to turn the strategy into compact, click-focused article changes and draft edits.
 
 ## Workflow Summary
 
@@ -369,6 +370,8 @@ What the AI Overview looks like and whether it creates click pressure?
 ```
 
 End by asking the human to confirm or challenge the strategy before any optimization plan is created.
+If they approve execution, tell them the next step is `seo-strategy-execution`, which may inspect
+competitors, rerun SERP checks, assess rewrite risk, and draft article edits.
 
 ## Gotcha — update Outline after the strategy report
 
@@ -396,6 +399,7 @@ If an Outline create/update action is blocked, rejected, or requires user approv
 - Do not produce a rewrite plan.
 - Do not suggest headings, FAQs, title tags, meta descriptions, images, or content additions.
 - Do not create final article diffs.
+- Do not perform `seo-strategy-execution` work inside this diagnostic audit. The execution skill is the second step after human strategy review.
 - Do not treat the SERP sub-agent as an article strategist.
 - Do not skip reading the article.
 - Do not skip GSC if the question is about traffic decline.

@@ -23,7 +23,7 @@ During install, Codex should open a browser for Google sign-in (PKCE) so the bun
 
 ### From a local file (no marketplace)
 
-A packaged Cowork bundle is built at `../seo-article-audit.plugin` (v2.7.11). Rebuild anytime:
+A packaged Cowork bundle is built at `../seo-article-audit.plugin` (v3.0.0). Rebuild anytime:
 
 ```sh
 ./scripts/package-cowork-plugin.sh
@@ -41,9 +41,10 @@ If install completes without a sign-in prompt, remove and reinstall the plugin a
 
 ### `seo-article-audit`
 
-This plugin bundles four skills:
+This plugin bundles five skills:
 
 - `seo-article-audit`: diagnoses why an AIHR article declined in organic traffic, checks prior Outline analysis, compares worldwide and US-only GSC performance, evaluates Ahrefs keyword facts and Chrome-based SERP observations for primary and secondary keywords, summarizes what the AI Overview looks like, then returns a human-in-the-loop salvage strategy before optimization work begins.
+- `seo-strategy-execution`: turns a confirmed audit strategy into compact, click-focused article recommendations and draft edits, using Outline memory checks, live SERP evidence, competitor pattern review, secondary keyword and related-search mapping, bloat control, rewrite risk assessment, and `article-diff-md` for the red/green draft-edit view.
 - `serp-analysis`: gathers fact-only observations from a US-localized Google SERP for a primary or secondary keyword, including observed search intent, AI Overview shape and sources, SERP features, ads, image/video modules, exact related searches, exact People Also Ask questions, organic result links, and screenshot evidence.
 - `article-diff-md`: formats pre-marked article edits into one GitHub-style red/green Markdown diff block.
 - `outline-article-refresh-memory`: proactively creates and maintains monthly Outline records during SEO article refresh work, including prior-record checks, supporting file attachments, final diff blocks, and collection overview/table-of-contents updates.
