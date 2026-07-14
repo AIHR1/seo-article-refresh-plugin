@@ -251,12 +251,18 @@ The first call returns worldwide data. The second call returns US-only data. Bot
 In the main response, show the page-level GSC data as a Markdown table before interpreting it. Include both worldwide and US-only rows:
 
 ```text
-| Scope | Current clicks | Previous clicks | Δ clicks | Current impressions | Previous impressions | Δ impressions | Current CTR | Previous CTR | Current avg position | Previous avg position |
+| Scope | Current clicks | Previous clicks | Δ clicks % | Current impressions | Previous impressions | Δ impressions % | Current CTR | Previous CTR | Current avg position | Previous avg position |
 | Worldwide | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
 | US only | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
 ```
 
-CTR is clicks ÷ impressions. Average position comes from `page.position` as `[current, previous]`. If a period has zero impressions, use `n/a` for CTR; if position is missing, use `n/a` instead of inventing a value.
+Under the table, include this short description:
+
+```text
+_GSC page data, not keyword data: current 6 months vs previous 6 months._
+```
+
+Delta columns must always show percentage change vs the previous period, never absolute deltas. CTR is clicks ÷ impressions. Average position comes from `page.position` as `[current, previous]`. If a period has zero impressions, use `n/a` for CTR; if position is missing, use `n/a` instead of inventing a value.
 
 From the response, identify:
 
