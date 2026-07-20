@@ -57,6 +57,7 @@ This plugin bundles five skills:
 - `plugins/seo-article-audit/.claude-plugin/plugin.json` — Cowork plugin manifest.
 - `plugins/seo-article-audit/.mcp.json` — remote AIHR GSC API, Ahrefs, and Outline MCP endpoints.
 - `plugins/seo-article-audit/skills/` — plugin skill instructions and helper scripts.
+- `plugins/seo-article-audit/skills/seo-strategy-execution/references/strategy-patterns.md` — reusable intent archetypes, strategic levers, and gold-standard reasoning examples for better article strategy decisions.
 
 ## Requirements
 

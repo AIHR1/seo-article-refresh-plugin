@@ -98,6 +98,10 @@ If an Outline write is blocked, rejected, or requires approval, follow `outline-
 
 ## Workflow
 
+Before making strategy or edit decisions, read `references/strategy-patterns.md`. Use it as a
+thinking vocabulary for intent archetypes, SERP-winning formats, and strategic levers. Do not
+turn it into extra process ceremony; use it to make the recommendations sharper.
+
 ### 1. Check Outline Memory
 
 Search prior Outline memory for the article slug and URL before drafting execution recommendations. Use relevant prior records to avoid repeating stale analysis, previously rejected edits, or duplicated work.
@@ -122,6 +126,11 @@ rejected, with evidence
 ```
 
 Do not treat a term as rejected simply because it has no exact-page GSC row. It may be a new-coverage hypothesis; check its allowed Ahrefs metrics, its live SERP intent, and the current article's coverage before deciding. Keep PAA questions and related-search terms as exact, separately labelled observations.
+
+For each serious candidate, identify the intent archetype, likely SERP-winning format, current
+article promise, current article delivery, best strategic lever, and the mediocre SEO move to avoid.
+This is the intelligence step: the recommendation should follow from the searcher's job and the
+format gap, not just from keyword volume or difficulty.
 
 If fresh evidence contradicts the prior strategy, say so and explain the contradiction before drafting edits.
 
@@ -280,7 +289,7 @@ Use a table unless the edits are too detailed for a table:
 Show the broad comparison before the chosen changes:
 
 ```text
-| Cluster | Source (GSC, PAA, or related search) | GSC baseline / data gap | Ahrefs metrics | Live-SERP intent and modules | Current coverage | Decision and rationale |
+| Cluster | Source (GSC, PAA, or related search) | Intent archetype / searcher job | GSC baseline / data gap | Ahrefs metrics | SERP-winning format | Current promise vs delivery | Strategic lever | Decision and rationale |
 ```
 
 Use the exact PAA and related-search text captured by `serp-analysis`. Never invent, merge, or relabel these terms. A phrase with no GSC row may be a valid new-coverage hypothesis, but it must not be presented as existing page demand.
@@ -290,7 +299,7 @@ Use the exact PAA and related-search text captured by `serp-analysis`. Never inv
 Before `Prioritized Changes`, include a table:
 
 ```text
-| Query cluster and portfolio role | Addressable queries and baseline | SERP / competitor evidence | Intervention mechanism | Incremental-click scenario and assumptions | Portfolio contribution / result |
+| Query cluster and portfolio role | Addressable queries and baseline | Intent archetype and SERP-winning format | SERP / competitor evidence | Intervention mechanism | Incremental-click scenario and assumptions | Portfolio contribution / result |
 ```
 
 Use a calculated scenario range, not a promise. If a required input is unavailable,
@@ -356,6 +365,7 @@ Before finalizing, self-check:
 - People Also Ask and related-search ideas are used only when they fit the article's purpose.
 - The broad secondary-opportunity universe was compared before a narrow recovery portfolio was selected.
 - Rejected candidates, including SERP-derived hypotheses such as ROI or templates, have an explicit evidence-based reason rather than being silently omitted.
+- The chosen strategy uses the relevant intent archetype and strategic lever from `references/strategy-patterns.md`, and avoids the named mediocre SEO move.
 
 ## What Not To Do
 

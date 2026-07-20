@@ -30,6 +30,11 @@ new sections, FAQs, titles, briefs, or on-page optimizations until the human has
 discussed the strategy. After the human confirms the strategy, use `seo-strategy-execution` as the
 second step to turn the strategy into compact, click-focused article changes and draft edits.
 
+For strategic vocabulary, use the pattern reference at
+`../seo-strategy-execution/references/strategy-patterns.md`. Use it to label candidate intent
+archetypes, likely winning formats, and strategic levers. Do not use it to produce optimization
+recommendations during this diagnostic phase.
+
 ## Workflow Summary
 
 1. Read the article and create a full-article artifact.
@@ -311,10 +316,15 @@ A cluster can combine close variants such as `insubordination write up`, `insubo
 Include this table before choosing candidates for Ahrefs/SERP work:
 
 ```text
-| Candidate cluster | Exact GSC variants | Current / previous clicks, impressions, position | Distinct intent or format | Current article coverage and promise check | Selection decision and reason |
+| Candidate cluster | Exact GSC variants | Current / previous clicks, impressions, position | Intent archetype and searcher job | Likely winning format | Current article coverage and promise check | Selection decision and reason |
 ```
 
 The promise check is mandatory: when a heading or introduction says the article contains a template, example, tool, or other format, verify that the body actually delivers it. A missing promised format is a material content gap, not a cosmetic copy issue.
+
+Use intent archetypes to avoid flattening distinct jobs into keyword variants. For example, a
+template-led query is not just a lower-volume informational variant; a software/tools query is often
+a decision-support job; a process/how-to query usually needs sequence or checklist value. Record the
+mediocre SEO move to avoid when a candidate looks tempting but strategically shallow.
 
 For each candidate, record its source as `GSC`, `People Also Ask`, `People also search for / related searches`, or `article-coverage hypothesis`. Keep People Also Ask and related searches separate; they are different Google modules and must not be merged or paraphrased as if they were exact queries.
 
@@ -447,3 +457,4 @@ If an Outline create/update action is blocked, rejected, or requires user approv
 - Do not fill Primary SERP Facts or Secondary SERP Facts without a **`serp-analysis`** screenshot-backed browser capture.
 - Do not turn the first viable secondary cluster into the strategy without the required broad portfolio comparison.
 - Do not omit visible People Also Ask or People also search for / related-search terms from the candidate universe merely because the page has no exact GSC row for them.
+- Do not collapse different intent archetypes into one generic secondary-keyword recommendation.
