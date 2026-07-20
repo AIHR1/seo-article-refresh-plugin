@@ -127,6 +127,8 @@ Screenshot
 
 The **AI Overview** section must be a few concrete sentences, not just `present` or `absent`. If present, describe the general shape of the module, whether it appears above the first organic result, what it answers, whether it was expanded, and the visible source types. If absent, state that no AI Overview was visible in the captured SERP and note any other above-the-fold modules that affect the first organic result.
 
+Keep `People Also Ask` and `Related Searches` distinct in the output. Transcribe the exact visible wording and visible order. If either module is absent, say `Not visible in this capture`; never infer or fabricate terms from the other module.
+
 **SERP Evidence Used** must confirm browser capture only. If Ahrefs or any third-party SERP source was used, the output is invalid — redo the capture with the browser workflow.
 
 Keep all content scoped to observed evidence. Do not include "Ranking Realism", "Implications For AIHR", "Recommendations", "Opportunities", or similar article-strategy sections.

@@ -39,7 +39,7 @@ second step to turn the strategy into compact, click-focused article changes and
 5. Delegate fact-only SERP analysis for the primary keyword.
 6. Pull exact-page GSC query data for a 6-month comparison.
 7. Diagnose whether the slug-derived primary query lost demand/AIHR-wide visibility or whether this page lost disproportionately, using monthly exact-query comparisons.
-8. Score all plausible secondary query clusters from GSC, then gather Ahrefs metrics and live-Google SERP evidence for candidates that can form a recovery portfolio.
+8. Build and compare a broad secondary-opportunity universe from GSC and live-SERP demand signals, then gather Ahrefs metrics and live-Google SERP evidence for candidates that can form a recovery portfolio.
 9. Summarize what the AI Overview looks like across the checked SERPs and how it affects click opportunity.
 10. Decide the strategy direction and report back for human review.
 11. Update Outline with the strategy report — do not skip this after delivering the report to the user.
@@ -298,13 +298,25 @@ Before selecting a secondary keyword, add a **Primary Demand vs Page-Loss Diagno
 - If the AIHR-wide series is stable/rising while the page falls, treat page-specific loss as the leading hypothesis.
 - If the comparator is unavailable, say `unresolved`; do not turn an unverified primary-query decline into a content-failure claim.
 
-Then score **every plausible secondary query cluster** from the US page-query data. A cluster can combine close variants such as `insubordination write up`, `insubordination write up examples`, and `write up for insubordination`. Include this table before choosing candidates for Ahrefs/SERP work:
+Then build a **secondary-opportunity universe** before choosing a recovery portfolio. Do not stop when the first plausible cluster is found.
+
+The universe must include:
+
+- every plausible secondary query cluster from the US page-query data;
+- exact People Also Ask questions and People also search for / related-search terms observed on the primary SERP; and
+- close intent variants that the article already signals but does not make findable in a heading, lead-in, table, checklist, or other useful format.
+
+A cluster can combine close variants such as `insubordination write up`, `insubordination write up examples`, and `write up for insubordination`. A SERP-derived term with no exact-page GSC row is a hypothesis, not proven page demand; label it that way and test it with allowed Ahrefs metrics and its own live SERP before promoting it.
+
+Include this table before choosing candidates for Ahrefs/SERP work:
 
 ```text
 | Candidate cluster | Exact GSC variants | Current / previous clicks, impressions, position | Distinct intent or format | Current article coverage and promise check | Selection decision and reason |
 ```
 
 The promise check is mandatory: when a heading or introduction says the article contains a template, example, tool, or other format, verify that the body actually delivers it. A missing promised format is a material content gap, not a cosmetic copy issue.
+
+For each candidate, record its source as `GSC`, `People Also Ask`, `People also search for / related searches`, or `article-coverage hypothesis`. Keep People Also Ask and related searches separate; they are different Google modules and must not be merged or paraphrased as if they were exact queries.
 
 Select secondary keyword candidates from GSC query data. Prioritize candidates that have at least one
 of these signals:
@@ -320,6 +332,8 @@ Potential to explain the decline or salvage opportunity
 
 Do not select a secondary keyword just because it has high impressions, low KD, or attractive Ahrefs volume. It must be relevant and have some realistic path to useful traffic. A higher-click distinct cluster cannot be rejected in favor of a lower-click cluster without a documented reason based on intent, SERP, article scope, or a verified content gap.
 
+Apply a **portfolio-completeness gate** before naming the strategy: compare at least three distinct candidates whenever three credible candidates exist. The comparison must include the strongest GSC-supported candidate, at least one candidate from a distinct intent, and every SERP-derived hypothesis that has a clear on-page coverage gap. It must explicitly state why each candidate is `portfolio`, `supporting coverage only`, `separate-page hypothesis`, or `rejected`. Do not elevate a single discovered keyword into the strategy before this comparison is complete.
+
 For selected secondary keyword candidates, repeat the keyword checks with the same tool boundaries:
 
 ```text
@@ -329,7 +343,7 @@ serp-analysis skill + browser → live SERP inventory + screenshot
 
 For secondary keywords, the same routing applies: **`keywords-explorer-overview`** for metrics only; **`serp-analysis`** for every SERP fact. Never use **`serp-overview`** or any Ahrefs SERP export.
 
-Analyze at least two distinct plausible clusters when the GSC data contains them. For every chosen cluster, get both allowed Ahrefs facts and fresh live-SERP evidence. A lower-volume cluster may be included in the recovery portfolio, but it cannot displace a stronger GSC-click cluster merely because its KD is lower.
+Analyze at least three distinct plausible clusters when the evidence contains them. For every portfolio candidate, get both allowed Ahrefs facts and fresh live-SERP evidence. For a rejected SERP-derived hypothesis, live-SERP evidence is required when it is rejected on intent or format grounds; otherwise, state the data gap rather than claiming it has no opportunity. A lower-volume cluster may be included in the recovery portfolio, but it cannot displace a stronger GSC-click cluster merely because its KD is lower.
 
 ## 9. Determine Strategy Direction
 
@@ -371,6 +385,7 @@ Primary Demand vs Page-Loss Diagnosis
 Secondary Keyword Candidates
 Secondary Opportunity Scorecard
 Secondary SERP Facts
+Secondary Opportunity Portfolio And Rejections
 Strategy Recommendation
 Why This Strategy
 Open Questions For Human Review
@@ -430,3 +445,5 @@ If an Outline create/update action is blocked, rejected, or requires user approv
 - Do not use Ahrefs `gsc-*` tools or site-explorer endpoints when the bundled GSC MCP or keyword metrics call exists.
 - Do not call AIHR sitewide exact-query impressions market search volume; only Ahrefs supplies the permitted market-volume fact.
 - Do not fill Primary SERP Facts or Secondary SERP Facts without a **`serp-analysis`** screenshot-backed browser capture.
+- Do not turn the first viable secondary cluster into the strategy without the required broad portfolio comparison.
+- Do not omit visible People Also Ask or People also search for / related-search terms from the candidate universe merely because the page has no exact GSC row for them.

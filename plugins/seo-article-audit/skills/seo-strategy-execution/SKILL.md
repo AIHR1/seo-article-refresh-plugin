@@ -35,7 +35,7 @@ Every recommended edit must connect to at least one click-recovery path:
 ## Click-Recovery Portfolio Gate
 
 Do not treat compliance, readability, or a low-risk diff as success. Before drafting
-edits, establish a measurable click-recovery thesis across a bounded recovery portfolio. The portfolio may contain the primary query and one or two distinct secondary clusters. When the audit classifies the primary query as AIHR-wide / demand-constrained, the recovery thesis may be secondary-led; it must say clearly that this is not a promise to replace all primary-query loss. For each proposed opportunity, show:
+edits, establish a measurable click-recovery thesis across a bounded recovery portfolio. The portfolio may contain the primary query and multiple distinct secondary clusters. When the audit classifies the primary query as AIHR-wide / demand-constrained, the recovery thesis may be secondary-led; it must say clearly that this is not a promise to replace all primary-query loss. Do not cap discovery at one or two clusters: screen the broad opportunity universe first, then keep the smallest set of opportunities that has a credible combined recovery thesis. For each proposed opportunity, show:
 
 | Required proof | What to show |
 | --- | --- |
@@ -112,6 +112,17 @@ Identify:
 - SERP constraints that affect clicks, such as AI Overview, ads, PAA, image/video modules, tools/templates, or dominant page types.
 - Human-approved strategy direction, if stated.
 
+Before accepting an earlier audit shortlist, run a **portfolio challenge**. Reopen the GSC candidate universe and the exact People Also Ask and People also search for / related-search terms from every live SERP already captured. Compare at least three credible, distinct intents when available. Explicitly classify each as:
+
+```text
+portfolio opportunity
+supporting coverage only
+separate-page hypothesis
+rejected, with evidence
+```
+
+Do not treat a term as rejected simply because it has no exact-page GSC row. It may be a new-coverage hypothesis; check its allowed Ahrefs metrics, its live SERP intent, and the current article's coverage before deciding. Keep PAA questions and related-search terms as exact, separately labelled observations.
+
 If fresh evidence contradicts the prior strategy, say so and explain the contradiction before drafting edits.
 
 ### 3. Read The Article For Coverage And Bloat
@@ -130,7 +141,7 @@ current article does not already cover.
 
 ### 4. Refresh SERP And Competitor Evidence
 
-For every keyword you actively target:
+For every keyword you actively target, and every SERP-derived hypothesis with a clear on-page gap that remains under consideration:
 
 - Use existing `serp-analysis` output if it is available and current.
 - Rerun `serp-analysis` if live SERP evidence is missing, stale, or not screenshot-backed.
@@ -242,6 +253,7 @@ Evidence Used
 Outline Memory Status
 SERP Compliance Status
 Click-Recovery Portfolio Gate
+Secondary Opportunity Portfolio And Rejections
 Prioritized Changes
 Keyword And SERP Mapping
 Competitor Patterns Used
@@ -259,6 +271,16 @@ Use a table unless the edits are too detailed for a table:
 ```text
 | Priority | Change | Location | Target keyword(s) | Click-recovery rationale | Evidence | Risk |
 ```
+
+### Secondary Opportunity Portfolio And Rejections
+
+Show the broad comparison before the chosen changes:
+
+```text
+| Cluster | Source (GSC, PAA, or related search) | GSC baseline / data gap | Ahrefs metrics | Live-SERP intent and modules | Current coverage | Decision and rationale |
+```
+
+Use the exact PAA and related-search text captured by `serp-analysis`. Never invent, merge, or relabel these terms. A phrase with no GSC row may be a valid new-coverage hypothesis, but it must not be presented as existing page demand.
 
 ### Click-Recovery Portfolio Gate
 
@@ -329,6 +351,8 @@ Before finalizing, self-check:
 - Outline was updated after execution work, or a blocker/approval need is explicitly unresolved.
 - Primary keyword support is explicit, even when the recovery path uses secondary keywords.
 - People Also Ask and related-search ideas are used only when they fit the article's purpose.
+- The broad secondary-opportunity universe was compared before a narrow recovery portfolio was selected.
+- Rejected candidates, including SERP-derived hypotheses such as ROI or templates, have an explicit evidence-based reason rather than being silently omitted.
 
 ## What Not To Do
 
@@ -337,6 +361,7 @@ Before finalizing, self-check:
 - Do not treat Ahrefs as a SERP source.
 - Do not ask the SERP sub-agent for strategy or edits.
 - Do not blindly add sections for every secondary keyword.
+- Do not narrow the audit to the first plausible secondary keyword or treat a prior shortlist as complete without a portfolio challenge.
 - Do not return No-Go merely because one secondary cluster cannot replace all primary-query loss; assess the bounded recovery portfolio.
 - Do not pass a cosmetic, low-risk, or compliance-complete refresh as a click-recovery strategy without a passing Click-Recovery Portfolio Gate.
 - Do not recommend new headings, FAQs, or sections without an addressable query cluster, live SERP evidence, and an incremental-click mechanism.
