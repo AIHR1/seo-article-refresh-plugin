@@ -178,7 +178,9 @@ Drafts must be concise, useful, and non-duplicative. Avoid expanding the article
 
 Production diffs must use exact old text from the current article. If you cannot match the exact old text, label the draft as advisory and do not present it as a production-ready patch.
 
-Focused changed-section diffs are allowed only when the user explicitly asks for focused draft edits. Label them clearly. For final delivery, prefer the full `article-diff-md` article artifact unless the user requests a focused diff.
+For production execution, the full `article-diff-md` article artifact is required. A focused changed-section diff is allowed only when the user explicitly asks for focused draft edits; label it clearly and do not treat it as the production deliverable.
+
+For legal, protected-activity, safety, dismissal, or jurisdiction-sensitive content, reconcile any conflict between the proposed wording and the current article before drafting the production patch. Use conditional, jurisdiction-aware language unless the source evidence supports a narrower statement. Do not leave a contradictory original legal statement unchanged beside a new boundary or caveat.
 
 ### 8. Update Outline Memory
 
@@ -269,7 +271,8 @@ Before finalizing, self-check:
 - Drafts are original and do not copy competitors.
 - Rewrites include risk assessment.
 - Draft edits are shown through `article-diff-md` unless the user explicitly asked for recommendations only.
-- Production diffs use exact old article text; focused drafts are labeled clearly when the user explicitly requested them.
+- Production diffs use exact old article text and include the full `article-diff-md` artifact; focused drafts are labeled clearly and used only when the user explicitly requested them.
+- Legal, protected-activity, safety, dismissal, and jurisdiction-sensitive edits reconcile conflicting current wording and use a justified risk label.
 - Any claim about downloadable or editable asset formats was verified.
 - Outline was updated after execution work, or a blocker/approval need is explicitly unresolved.
 - Primary keyword support is explicit, even when the recovery path uses secondary keywords.
