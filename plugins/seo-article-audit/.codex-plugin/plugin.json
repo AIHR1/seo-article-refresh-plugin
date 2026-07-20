@@ -1,6 +1,6 @@
 {
   "name": "seo-article-audit",
-  "version": "3.0.1",
+  "version": "3.0.1+codex.20260720112222",
   "description": "Diagnose why an AIHR article lost organic traffic, decide whether SEO salvage is viable, then execute confirmed strategies as compact click-focused article changes. Reads the article, checks Outline history, pulls worldwide and US-only GSC data plus Ahrefs keyword facts, runs Chrome-based factual SERP observation, recommends strategy before optimization, and bundles seo-strategy-execution for recommendations, rewrite risk assessment, draft edits, and article-diff-md red/green diff views.",
   "author": {
     "name": "AIHR"
