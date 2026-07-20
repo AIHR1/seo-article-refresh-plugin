@@ -32,6 +32,33 @@ Every recommended edit must connect to at least one click-recovery path:
 - Improve CTR or snippet relevance without changing the article's target intent.
 - Reduce mismatch, duplication, or bloat that weakens the article's usefulness.
 
+## Non-Negotiable Click-Recovery Gate
+
+Do not treat compliance, readability, or a low-risk diff as success. Before drafting
+edits, establish a material, measurable click-recovery thesis. For each proposed
+opportunity, show:
+
+| Required proof | What to show |
+| --- | --- |
+| Addressable query cluster | Exact GSC queries, current and previous clicks/impressions, and current position or a clearly stated data gap. |
+| Search opportunity | Screenshot-backed live SERP intent and modules, plus the competitor pattern or content gap that makes the opportunity plausible. |
+| Intervention mechanism | Why a specific change could win new impressions, improve CTR, or better satisfy an intent that the current article does not already meet. |
+| Incremental-click scenario | A transparent, non-guaranteed range with the arithmetic and assumptions shown (for example, addressable impressions × assumed CTR change). |
+| Materiality and risk | Why the estimated range is material enough to justify changing the article, and which existing query coverage might be lost. |
+
+An opportunity passes the gate only when all five proofs are present. A definition or
+copy cleanup does **not** pass by itself unless the model demonstrates a material
+incremental-click scenario. Do not call a change click-focused merely because it fits
+the primary keyword.
+
+If no opportunity passes, return **No-Go — no credible click-recovery path on the
+current page**. Do not create a production diff. Instead, choose and justify one of:
+
+- a materially different rewrite hypothesis to test with fresh evidence;
+- a separate or supporting article/page opportunity, where keyword cannibalization and
+  internal-link implications are addressed; or
+- deprioritization, with the evidence for stopping investment.
+
 ## Required Inputs
 
 Start with the best available evidence:
@@ -98,7 +125,10 @@ Review the current article before suggesting changes. Map the article by section
 - Which GSC/SERP opportunity it already addresses.
 - Which sections are thin, outdated, redundant, off-intent, or overly long.
 
-Prefer tightening, rewriting, or consolidating existing sections before adding new sections. Add new content only when the opportunity is clear and not already covered.
+Do not default to the smallest edit. Prefer tightening, rewriting, or consolidating
+when that is sufficient to pass the Click-Recovery Gate. Add or materially restructure
+content only when the gate shows an addressable query/intent opportunity that the
+current article does not already cover.
 
 ### 4. Refresh SERP And Competitor Evidence
 
@@ -129,7 +159,8 @@ Do not copy competitor wording, structure verbatim, distinctive examples, propri
 
 ### 5. Build The Change List
 
-Create a prioritized list of changes. Each change must state:
+Create a prioritized list of changes only after at least one opportunity passes the
+Click-Recovery Gate. Each change must state:
 
 - Action type: add, rewrite, tighten, consolidate, remove, change heading, update intro, add example, add table, add FAQ, improve internal transition, or adjust snippet-facing copy.
 - Target location in the article.
@@ -140,6 +171,11 @@ Create a prioritized list of changes. Each change must state:
 - SERP or competitor evidence used.
 - Bloat control decision.
 - Rewrite risk assessment.
+
+Do not include a change whose mechanism is only “clearer copy” or “better SEO” without
+an explicit incremental-click scenario. New headings, FAQs, sections, or a separate-page
+recommendation must map to a query cluster and live SERP evidence; do not add them as
+generic completeness improvements.
 
 Do not recommend a change just because a competitor has it. Recommend it only when it advances the click-recovery strategy and fits AIHR's article.
 
@@ -166,7 +202,7 @@ Do not change - risk outweighs likely click recovery.
 
 When the user wants execution, produce draft edits, not only recommendations.
 
-Use the smallest effective edit format:
+Use the format that the passing recovery thesis requires:
 
 - Section-level replacement copy for rewrites.
 - New paragraph copy for additions.
@@ -174,7 +210,10 @@ Use the smallest effective edit format:
 - Remove/consolidate notes for cuts.
 - A pre-marked diff for changed article sections, then use `article-diff-md` to show the draft edits as a single red/green diff-block artifact.
 
-Drafts must be concise, useful, and non-duplicative. Avoid expanding the article by default. If the article grows, explain why the added content is worth the extra length.
+Drafts must be concise, useful, and non-duplicative. Avoid expansion that has no
+measurable recovery mechanism. If the article grows, explain the addressable query
+cluster, expected incremental-click scenario, and why the added content is worth the
+extra length.
 
 Production diffs must use exact old text from the current article. If you cannot match the exact old text, label the draft as advisory and do not present it as a production-ready patch.
 
@@ -204,6 +243,7 @@ Article And Strategy
 Evidence Used
 Outline Memory Status
 SERP Compliance Status
+Click-Recovery Gate
 Prioritized Changes
 Keyword And SERP Mapping
 Competitor Patterns Used
@@ -221,6 +261,18 @@ Use a table unless the edits are too detailed for a table:
 ```text
 | Priority | Change | Location | Target keyword(s) | Click-recovery rationale | Evidence | Risk |
 ```
+
+### Click-Recovery Gate
+
+Before `Prioritized Changes`, include a table:
+
+```text
+| Opportunity | Addressable queries and baseline | SERP / competitor evidence | Intervention mechanism | Incremental-click scenario and assumptions | Gate result |
+```
+
+Use a calculated scenario range, not a promise. If a required input is unavailable,
+state the gap and fail that opportunity rather than inventing an estimate. When every
+opportunity fails, put `No-Go` here and omit `Draft Edits` and the production diff.
 
 ### Draft Edits
 
@@ -267,6 +319,8 @@ Before finalizing, self-check:
 - Every targeted keyword has live Google SERP evidence from `serp-analysis`.
 - SERP compliance status is included.
 - The plan is about recovering clicks, not maximizing keyword count.
+- At least one opportunity passes the Click-Recovery Gate before a production draft is created; otherwise the output is an explicit No-Go or a justified separate-page/rewrite hypothesis.
+- Each passing opportunity includes query data, SERP/competitor evidence, an intervention mechanism, and a transparent incremental-click scenario.
 - Recommendations preserve article focus and avoid bloat.
 - Drafts are original and do not copy competitors.
 - Rewrites include risk assessment.
@@ -285,6 +339,8 @@ Before finalizing, self-check:
 - Do not treat Ahrefs as a SERP source.
 - Do not ask the SERP sub-agent for strategy or edits.
 - Do not blindly add sections for every secondary keyword.
+- Do not pass a cosmetic, low-risk, or compliance-complete refresh as a click-recovery strategy without a passing Click-Recovery Gate.
+- Do not recommend new headings, FAQs, or sections without an addressable query cluster, live SERP evidence, and an incremental-click mechanism.
 - Do not bloat the article with generic SEO filler.
 - Do not copy competitor language or reproduce distinctive structure.
 - Do not show draft edits only as plain replacement text when the user asked for execution. Use `article-diff-md` for the draft-edit view.
