@@ -217,7 +217,8 @@ Use the format that the passing recovery thesis requires:
 - New paragraph copy for additions.
 - Old heading -> new heading for heading changes.
 - Remove/consolidate notes for cuts.
-- A pre-marked diff for changed article sections, then use `article-diff-md` to show the draft edits as a single red/green diff-block artifact.
+- A pre-marked diff for the full article body when the user asks to execute, draft, productionize, or prepare article edits, then use `article-diff-md` to show the draft edits as a single red/green diff-block artifact.
+- A focused changed-section diff only when the user explicitly asks for a focused or advisory draft; label that artifact clearly and do not present it as the execution deliverable.
 
 Drafts must be concise, useful, and non-duplicative. Avoid expansion that has no
 measurable recovery mechanism. If the article grows, explain the addressable query
@@ -226,7 +227,9 @@ extra length.
 
 Production diffs must use exact old text from the current article. If you cannot match the exact old text, label the draft as advisory and do not present it as a production-ready patch.
 
-For production execution, the full `article-diff-md` article artifact is required. A focused changed-section diff is allowed only when the user explicitly asks for focused draft edits; label it clearly and do not treat it as the production deliverable.
+For production execution, an unqualified "execute" request, or any request to prepare publishable draft edits, the full `article-diff-md` article artifact is required. A focused changed-section diff is allowed only when the user explicitly asks for focused draft edits; label it clearly and do not treat it as the production deliverable.
+
+Before handing back an execution artifact, compare the artifact's final article section inventory against the current article's section inventory. The artifact must include every article-body heading from the title or first article heading through the closing section, plus any added headings, unless it is explicitly labeled focused/advisory. If sections are missing, regenerate the artifact before responding.
 
 For legal, protected-activity, safety, dismissal, or jurisdiction-sensitive content, reconcile any conflict between the proposed wording and the current article before drafting the production patch. Use conditional, jurisdiction-aware language unless the source evidence supports a narrower statement. Do not leave a contradictory original legal statement unchanged beside a new boundary or caveat.
 
@@ -345,7 +348,7 @@ Before finalizing, self-check:
 - Drafts are original and do not copy competitors.
 - Rewrites include risk assessment.
 - Draft edits are shown through `article-diff-md` unless the user explicitly asked for recommendations only.
-- Production diffs use exact old article text and include the full `article-diff-md` artifact; focused drafts are labeled clearly and used only when the user explicitly requested them.
+- Production diffs use exact old article text, include the full article body in the `article-diff-md` artifact, and pass a heading inventory check against the current article; focused drafts are labeled clearly and used only when the user explicitly requested them.
 - Legal, protected-activity, safety, dismissal, and jurisdiction-sensitive edits reconcile conflicting current wording and use a justified risk label.
 - Any claim about downloadable or editable asset formats was verified.
 - Outline was updated after execution work, or a blocker/approval need is explicitly unresolved.

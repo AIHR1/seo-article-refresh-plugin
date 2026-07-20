@@ -30,14 +30,21 @@ The caller provides **both**:
 
 1. **A source** — either an article URL (typically `aihr.com/blog/...`) **or** the
    article text pasted directly.
-2. **Pre-marked text** — the article (or just the changed portions) with the edits
-   already expressed as diff lines: each removed line prefixed `-`, each added line
+2. **Pre-marked text** — the full article by default, with the edits already
+   expressed as diff lines: each removed line prefixed `-`, each added line
    prefixed `+`. Unchanged paragraphs need no prefix; this skill adds the leading
    space.
 
+Changed portions only are allowed **only** when the caller explicitly requests a
+focused or advisory artifact. In that case, the title and intro must say it is
+focused/advisory, and the result must not be described as a full article diff,
+production diff, publishable diff, or execution deliverable.
+
 If only a URL is given with the marked changes described separately, fetch the URL
 (see Step 1), then splice the supplied `-`/`+` lines into the matching spots in the
-extracted text.
+extracted text. For normal SEO Strategy Execution, assemble the full article body
+and verify all current article headings are present in the final diff block. Do
+not omit unchanged sections in normal output.
 
 ## Workflow
 
@@ -77,8 +84,9 @@ Structure, in this order:
    instructions about how diff coloring works unless the caller asks — keep it to the
    walkthrough of the actual changes.
 3. **The diff block** — open with a line containing only ` ```diff `, then the entire
-   article body, then a closing ` ``` ` fence. Optionally start the block with a
-   `@@ ... @@` hunk header for flavor.
+   article body, then a closing ` ``` ` fence. For SEO Strategy Execution, this means
+   the full article body, not only the changed hunks or changed sections. Optionally
+   start the block with a `@@ ... @@` hunk header for flavor.
 
 ### Step 4 — Wrap lines inside the diff block
 
@@ -102,6 +110,10 @@ headers and blank lines are left untouched. Default width is 80.
 - Present the file to the user.
 - Add a one-line source citation at the bottom linking the original article URL when
   one was provided.
+- Before presenting a full article diff, compare the final diff block's heading
+  inventory against the fetched or pasted source article. If any existing article
+  heading is missing, regenerate the file before returning it. Skip this check only
+  for explicitly focused/advisory artifacts.
 
 ## Notes
 

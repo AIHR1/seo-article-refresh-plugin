@@ -23,7 +23,7 @@ During install, Codex should open a browser for Google sign-in (PKCE) so the bun
 
 ### From a local file (no marketplace)
 
-A packaged Cowork bundle is built at `../seo-article-audit.plugin` (v3.0.0). Rebuild anytime:
+A packaged Cowork bundle is built at `../seo-article-audit.plugin`. Rebuild anytime:
 
 ```sh
 ./scripts/package-cowork-plugin.sh
