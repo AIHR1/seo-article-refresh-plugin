@@ -38,8 +38,8 @@ second step to turn the strategy into compact, click-focused article changes and
 4. Pull Ahrefs keyword difficulty and search volume for the primary keyword.
 5. Delegate fact-only SERP analysis for the primary keyword.
 6. Pull exact-page GSC query data for a 6-month comparison.
-7. Identify potential secondary keyword candidates from GSC.
-8. Pull Ahrefs difficulty/volume and delegate live-Google SERP analysis for selected secondary keyword(s).
+7. Diagnose whether the slug-derived primary query lost demand/AIHR-wide visibility or whether this page lost disproportionately, using monthly exact-query comparisons.
+8. Score all plausible secondary query clusters from GSC, then gather Ahrefs metrics and live-Google SERP evidence for candidates that can form a recovery portfolio.
 9. Summarize what the AI Overview looks like across the checked SERPs and how it affects click opportunity.
 10. Decide the strategy direction and report back for human review.
 11. Update Outline with the strategy report — do not skip this after delivering the report to the user.
@@ -51,6 +51,7 @@ This audit uses **three separate tools**. Each has one job. Do not substitute on
 | Data need | Required source | Required method |
 | --- | --- | --- |
 | Page traffic, query clicks, impressions, position, CTR, 6-month decline | **Google Search Console** | MCP server **`AIHR-GSC-API`** → tool **`fetch_article_keyword_performance`** twice with the normalized AIHR URL: once with `us_only: false` and once with `us_only: true` |
+| Primary-query demand vs page-specific loss | **Google Search Console** | MCP server **`AIHR-GSC-API`** → tool **`fetch_monthly_query_comparison`** twice for the slug-derived primary query: once worldwide and once US-only |
 | Keyword difficulty and search volume only | **Ahrefs** | MCP server **`ahrefs`** → tool **`keywords-explorer-overview`** for the keyword in **`US`**; read only **keyword difficulty** and **search volume** |
 | SERP features, organic results, AI Overview, PAA, ads, intent, screenshot | **Live Google SERP** | Bundled skill **`serp-analysis`** via **browser** (navigate to `google.com/search`, capture screenshot, inspect DOM) |
 
@@ -61,6 +62,7 @@ This audit uses **three separate tools**. Each has one job. Do not substitute on
   - `us_only: false` for worldwide traffic.
   - `us_only: true` for United States traffic.
 - The tool returns current vs previous 6-month page and query metrics. Keep the worldwide and US-only responses separate.
+- **Always** call **`fetch_monthly_query_comparison`** twice for the slug-derived primary query after the page comparison. Use `us_only: false` and `us_only: true`. It returns the exact page's exact-query history beside AIHR's sitewide history for that exact query. The sitewide series is an AIHR visibility comparator, **not market search volume**.
 - **Never** use Ahrefs GSC tools (`gsc-pages`, `gsc-keywords`, `gsc-page-history`, or any other `gsc-*` Ahrefs endpoint) for this audit. Ahrefs GSC is not the packaged GSC source.
 - **Never** infer traffic decline from Ahrefs traffic estimates, `site-explorer-*` metrics, or rank-tracker data when GSC is available.
 
@@ -87,6 +89,10 @@ Before calling a tool, confirm:
 Need query-level clicks/impressions/position for this exact AIHR URL?
   → AIHR-GSC-API / fetch_article_keyword_performance twice
   → us_only=false for worldwide, then us_only=true for US-only
+
+Need to know whether primary-query loss is AIHR-wide/demand-constrained or page-specific?
+  → AIHR-GSC-API / fetch_monthly_query_comparison twice for the slug-derived primary query
+  → compare the exact-page and sitewide-exact-query monthly series; never call the latter search volume
 
 Need difficulty or volume for one keyword?
   → ahrefs / keywords-explorer-overview (US only; difficulty + volume fields only)
@@ -285,6 +291,21 @@ Use the US-only query data for keyword candidate selection unless worldwide data
 
 ## 8. Determine Potential Secondary Keywords
 
+Before selecting a secondary keyword, add a **Primary Demand vs Page-Loss Diagnosis**. Use the monthly comparator for the slug-derived primary query in worldwide and US-only scope. State the observed pattern, then label the conclusion as either `page-specific loss`, `AIHR-wide / demand-constrained`, `mixed`, or `unresolved`.
+
+- If exact-page and AIHR-wide exact-query impressions fall similarly while page position is stable or improves, do **not** claim that a page rewrite alone will recover the lost primary-query demand.
+- If the page falls materially more than the AIHR-wide series, investigate page-specific query coverage, eligibility, intent, or CTR loss.
+- If the AIHR-wide series is stable/rising while the page falls, treat page-specific loss as the leading hypothesis.
+- If the comparator is unavailable, say `unresolved`; do not turn an unverified primary-query decline into a content-failure claim.
+
+Then score **every plausible secondary query cluster** from the US page-query data. A cluster can combine close variants such as `insubordination write up`, `insubordination write up examples`, and `write up for insubordination`. Include this table before choosing candidates for Ahrefs/SERP work:
+
+```text
+| Candidate cluster | Exact GSC variants | Current / previous clicks, impressions, position | Distinct intent or format | Current article coverage and promise check | Selection decision and reason |
+```
+
+The promise check is mandatory: when a heading or introduction says the article contains a template, example, tool, or other format, verify that the body actually delivers it. A missing promised format is a material content gap, not a cosmetic copy issue.
+
 Select secondary keyword candidates from GSC query data. Prioritize candidates that have at least one
 of these signals:
 
@@ -297,8 +318,7 @@ Distinct intent from the primary keyword
 Potential to explain the decline or salvage opportunity
 ```
 
-Do not select a secondary keyword just because it has high impressions. It must be relevant and have
-some realistic path to useful traffic.
+Do not select a secondary keyword just because it has high impressions, low KD, or attractive Ahrefs volume. It must be relevant and have some realistic path to useful traffic. A higher-click distinct cluster cannot be rejected in favor of a lower-click cluster without a documented reason based on intent, SERP, article scope, or a verified content gap.
 
 For selected secondary keyword candidates, repeat the keyword checks with the same tool boundaries:
 
@@ -309,8 +329,7 @@ serp-analysis skill + browser → live SERP inventory + screenshot
 
 For secondary keywords, the same routing applies: **`keywords-explorer-overview`** for metrics only; **`serp-analysis`** for every SERP fact. Never use **`serp-overview`** or any Ahrefs SERP export.
 
-It is acceptable to analyze one strong secondary keyword first. Analyze more only when the GSC data
-shows multiple plausible directions.
+Analyze at least two distinct plausible clusters when the GSC data contains them. For every chosen cluster, get both allowed Ahrefs facts and fresh live-SERP evidence. A lower-volume cluster may be included in the recovery portfolio, but it cannot displace a stronger GSC-click cluster merely because its KD is lower.
 
 ## 9. Determine Strategy Direction
 
@@ -327,8 +346,7 @@ Strategy criteria:
 
 - Primary keyword viability depends on observed search intent, Ahrefs difficulty/volume, SERP
   composition, AI Overview pressure, competing page types, and GSC evidence.
-- Secondary keyword viability depends on GSC query evidence, Ahrefs difficulty/volume, SERP facts,
-  and relevance to the article's current or plausible scope.
+- Secondary keyword viability depends first on GSC query evidence and a distinct intent/format gap, then on live-SERP facts, article-scope fit, and Ahrefs difficulty/volume.
 - A keyword is only strategically useful if it can plausibly recover clicks. Strong ranking potential
   is not enough when SERP features or ads make organic clicks unlikely.
 - A strategy can be mixed, e.g. keep the primary keyword while using secondary keywords as the
@@ -349,7 +367,9 @@ Primary Keyword Facts
 Primary SERP Facts
 AI Overview Summary
 GSC Query Findings
+Primary Demand vs Page-Loss Diagnosis
 Secondary Keyword Candidates
+Secondary Opportunity Scorecard
 Secondary SERP Facts
 Strategy Recommendation
 Why This Strategy
@@ -362,6 +382,7 @@ The final report should answer:
 ```text
 Why did the article decline?
 Is the primary keyword still viable?
+Did the primary query lose AIHR-wide visibility/demand, or did this page underperform the sitewide query pattern?
 Is there a better secondary keyword opportunity?
 Is there an opportunity to salvage the article?
 Which path is most likely to recover clicks, not just rankings?
@@ -407,4 +428,5 @@ If an Outline create/update action is blocked, rejected, or requires user approv
 - Do not reduce an Outline write approval/rejection to a final-answer caveat. Ask for approval immediately and retry the Outline write if the user approves.
 - Do not use Ahrefs for SERP data (`serp-overview`, `rank-tracker-serp-overview`, SERP rows, rank-index exports).
 - Do not use Ahrefs `gsc-*` tools or site-explorer endpoints when the bundled GSC MCP or keyword metrics call exists.
+- Do not call AIHR sitewide exact-query impressions market search volume; only Ahrefs supplies the permitted market-volume fact.
 - Do not fill Primary SERP Facts or Secondary SERP Facts without a **`serp-analysis`** screenshot-backed browser capture.

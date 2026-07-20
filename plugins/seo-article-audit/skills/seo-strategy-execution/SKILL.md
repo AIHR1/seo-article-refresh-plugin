@@ -32,11 +32,10 @@ Every recommended edit must connect to at least one click-recovery path:
 - Improve CTR or snippet relevance without changing the article's target intent.
 - Reduce mismatch, duplication, or bloat that weakens the article's usefulness.
 
-## Non-Negotiable Click-Recovery Gate
+## Click-Recovery Portfolio Gate
 
 Do not treat compliance, readability, or a low-risk diff as success. Before drafting
-edits, establish a material, measurable click-recovery thesis. For each proposed
-opportunity, show:
+edits, establish a measurable click-recovery thesis across a bounded recovery portfolio. The portfolio may contain the primary query and one or two distinct secondary clusters. When the audit classifies the primary query as AIHR-wide / demand-constrained, the recovery thesis may be secondary-led; it must say clearly that this is not a promise to replace all primary-query loss. For each proposed opportunity, show:
 
 | Required proof | What to show |
 | --- | --- |
@@ -44,15 +43,13 @@ opportunity, show:
 | Search opportunity | Screenshot-backed live SERP intent and modules, plus the competitor pattern or content gap that makes the opportunity plausible. |
 | Intervention mechanism | Why a specific change could win new impressions, improve CTR, or better satisfy an intent that the current article does not already meet. |
 | Incremental-click scenario | A transparent, non-guaranteed range with the arithmetic and assumptions shown (for example, addressable impressions × assumed CTR change). |
-| Materiality and risk | Why the estimated range is material enough to justify changing the article, and which existing query coverage might be lost. |
+| Portfolio materiality and risk | Why the combined, bounded range justifies the changes, which contribution each cluster can realistically make, and which existing query coverage might be lost. |
 
-An opportunity passes the gate only when all five proofs are present. A definition or
-copy cleanup does **not** pass by itself unless the model demonstrates a material
-incremental-click scenario. Do not call a change click-focused merely because it fits
-the primary keyword.
+Each portfolio opportunity needs the first four proofs; the portfolio passes only when the combined plan has the fifth. A definition or copy cleanup does **not** pass by itself unless the model demonstrates an incremental-click scenario. Do not call a change click-focused merely because it fits the primary keyword.
 
-If no opportunity passes, return **No-Go — no credible click-recovery path on the
-current page**. Do not create a production diff. Instead, choose and justify one of:
+If a heading or lead-in promises a template, example, tool, worksheet, or other format that the article does not actually provide, treat that as a substantive format gap. The intervention must then add the promised, source-supported format under the relevant heading—not merely add a keyword heading or generic FAQ.
+
+Return **No-Go — no credible click-recovery path on the current page** only when neither the primary path nor any evidenced secondary cluster has an actionable intent/format gap. Do not create a production diff in that case. Instead, choose and justify one of:
 
 - a materially different rewrite hypothesis to test with fresh evidence;
 - a separate or supporting article/page opportunity, where keyword cannibalization and
@@ -66,6 +63,7 @@ Start with the best available evidence:
 - AIHR article URL and current article content.
 - The prior `seo-article-audit` strategy report, when available.
 - GSC query findings for the exact page, especially current/previous clicks, impressions, CTR, position, and query losses.
+- The audit's primary-demand vs page-loss diagnosis, including monthly exact-page versus AIHR-wide exact-query comparisons when the primary query drives the loss.
 - Primary and secondary keyword direction approved or discussed by the human.
 - Existing `serp-analysis` reports and screenshots for every keyword being targeted.
 
@@ -126,7 +124,7 @@ Review the current article before suggesting changes. Map the article by section
 - Which sections are thin, outdated, redundant, off-intent, or overly long.
 
 Do not default to the smallest edit. Prefer tightening, rewriting, or consolidating
-when that is sufficient to pass the Click-Recovery Gate. Add or materially restructure
+when that is sufficient to pass the Click-Recovery Portfolio Gate. Add or materially restructure
 content only when the gate shows an addressable query/intent opportunity that the
 current article does not already cover.
 
@@ -160,7 +158,7 @@ Do not copy competitor wording, structure verbatim, distinctive examples, propri
 ### 5. Build The Change List
 
 Create a prioritized list of changes only after at least one opportunity passes the
-Click-Recovery Gate. Each change must state:
+Click-Recovery Portfolio Gate. Each change must state:
 
 - Action type: add, rewrite, tighten, consolidate, remove, change heading, update intro, add example, add table, add FAQ, improve internal transition, or adjust snippet-facing copy.
 - Target location in the article.
@@ -243,7 +241,7 @@ Article And Strategy
 Evidence Used
 Outline Memory Status
 SERP Compliance Status
-Click-Recovery Gate
+Click-Recovery Portfolio Gate
 Prioritized Changes
 Keyword And SERP Mapping
 Competitor Patterns Used
@@ -262,17 +260,16 @@ Use a table unless the edits are too detailed for a table:
 | Priority | Change | Location | Target keyword(s) | Click-recovery rationale | Evidence | Risk |
 ```
 
-### Click-Recovery Gate
+### Click-Recovery Portfolio Gate
 
 Before `Prioritized Changes`, include a table:
 
 ```text
-| Opportunity | Addressable queries and baseline | SERP / competitor evidence | Intervention mechanism | Incremental-click scenario and assumptions | Gate result |
+| Query cluster and portfolio role | Addressable queries and baseline | SERP / competitor evidence | Intervention mechanism | Incremental-click scenario and assumptions | Portfolio contribution / result |
 ```
 
 Use a calculated scenario range, not a promise. If a required input is unavailable,
-state the gap and fail that opportunity rather than inventing an estimate. When every
-opportunity fails, put `No-Go` here and omit `Draft Edits` and the production diff.
+state the gap and fail that opportunity rather than inventing an estimate. State the primary-demand verdict and whether the portfolio is secondary-led. When every evidenced path fails, put `No-Go` here and omit `Draft Edits` and the production diff.
 
 ### Draft Edits
 
@@ -319,7 +316,8 @@ Before finalizing, self-check:
 - Every targeted keyword has live Google SERP evidence from `serp-analysis`.
 - SERP compliance status is included.
 - The plan is about recovering clicks, not maximizing keyword count.
-- At least one opportunity passes the Click-Recovery Gate before a production draft is created; otherwise the output is an explicit No-Go or a justified separate-page/rewrite hypothesis.
+- The report states whether the primary-query loss is page-specific, AIHR-wide / demand-constrained, mixed, or unresolved. When it is constrained, the plan uses an evidenced secondary-led recovery portfolio rather than pretending a primary rewrite will restore demand.
+- At least one recovery portfolio passes the Click-Recovery Portfolio Gate before a production draft is created; otherwise the output is an explicit No-Go or a justified separate-page/rewrite hypothesis.
 - Each passing opportunity includes query data, SERP/competitor evidence, an intervention mechanism, and a transparent incremental-click scenario.
 - Recommendations preserve article focus and avoid bloat.
 - Drafts are original and do not copy competitors.
@@ -339,7 +337,8 @@ Before finalizing, self-check:
 - Do not treat Ahrefs as a SERP source.
 - Do not ask the SERP sub-agent for strategy or edits.
 - Do not blindly add sections for every secondary keyword.
-- Do not pass a cosmetic, low-risk, or compliance-complete refresh as a click-recovery strategy without a passing Click-Recovery Gate.
+- Do not return No-Go merely because one secondary cluster cannot replace all primary-query loss; assess the bounded recovery portfolio.
+- Do not pass a cosmetic, low-risk, or compliance-complete refresh as a click-recovery strategy without a passing Click-Recovery Portfolio Gate.
 - Do not recommend new headings, FAQs, or sections without an addressable query cluster, live SERP evidence, and an incremental-click mechanism.
 - Do not bloat the article with generic SEO filler.
 - Do not copy competitor language or reproduce distinctive structure.
